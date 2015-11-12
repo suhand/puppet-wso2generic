@@ -1,0 +1,94 @@
+<%- datasources = scope.function_hiera(['datasources']) -%>
+<%- if @amtype == 'gateway' or @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+        <datasource>
+            <name>WSO2AM_DB</name>
+            <description>The datasource used for the API Manager database</description>
+            <jndiConfig>
+                <name>jdbc/WSO2AM_DB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= datasources[apim_db_connection_url] %></url>
+                    <username><%= datasources[apim_db_user] %></username>
+                    <password><%= datasources[apim_db_password] %></password>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+                    <driverClassName><%= datasources[apim_db_driver_name] %></driverClassName>
+                    <maxActive>50</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery>SELECT 1</validationQuery>
+                    <validationInterval>30000</validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+<%- end -%>
+
+<%- if @amtype == 'gateway' or  @amtype == 'keymanager' or @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+	<datasource>
+            <name>WSO2UM_DB</name>
+            <description>The datasource used by user manager</description>
+            <jndiConfig>
+                <name>jdbc/WSO2UM_DB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= datasources[userstore_db_connection_url] %></url>
+                    <username><%= datasources[userstore_db_user] %></username>
+                    <password><%= datasources[userstore_db_password] %></password>
+                    <driverClassName><%= datasources[userstore_db_driver_name] %></driverClassName>
+                    <maxActive>50</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery>SELECT 1</validationQuery>
+                    <validationInterval>30000</validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+<%- end -%>
+
+<%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' or @amtype== 'gateway' -%>
+        <datasource>
+            <name>WSO2REG_DB</name>
+            <description>The datasource used by the registry</description>
+            <jndiConfig>
+                <name>jdbc/WSO2REG_DB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= datasources[registry_db_connection_url] %></url>
+                    <username><%= datasources[registry_db_user] %></username>
+                    <password><%= datasources[registry_db_password] %></password>
+                    <driverClassName><%= datasources[registry_db_driver_name] %></driverClassName>
+                    <maxActive>50</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery>SELECT 1</validationQuery>
+                    <validationInterval>30000</validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+<%- end -%>
+
+<%- if @amtype == 'publisher' or @amtype == 'apistore' or @amtype == 'pubstore' -%>
+        <datasource>
+            <name>WSO2AM_STATS_DB</name>
+            <description>The datasource used for getting statistics to API Manager</description>
+            <jndiConfig>
+                <name>jdbc/WSO2AM_STATS_DB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url><%= datasources[stats_db_connection_url] %></url>
+                    <username><%= datasources[stats_db_user] %></username>
+                    <password><%= datasources[stats_db_password] %></password>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+                    <driverClassName><%= datasources[stats_db_driver_name] %></driverClassName>
+                    <maxActive>50</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery>SELECT 1</validationQuery>
+                    <validationInterval>30000</validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+<%- end -%>
